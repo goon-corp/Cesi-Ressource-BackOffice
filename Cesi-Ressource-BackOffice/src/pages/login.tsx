@@ -35,9 +35,12 @@ const LoginView: React.FC = () => {
               type="password" 
               placeholder="••••••••••••"
             />
-            <div className="mt-3 text-right">
-              <a href="#" className="text-[10px] uppercase tracking-widest text-gray-400 hover:text-black transition">
-                Mot de passe oublié ?
+            <div className="text-right mt-2">
+              <a
+                href="/forgot-password"
+                className="text-[10px] uppercase tracking-widest text-gray-400 hover:text-black transition border-b border-transparent hover:border-black pb-1"
+              >
+                mot de passe oublié ? 
               </a>
             </div>
           </div>
