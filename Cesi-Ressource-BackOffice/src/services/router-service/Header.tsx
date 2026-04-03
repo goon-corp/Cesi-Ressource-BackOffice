@@ -1,7 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import logoSante from "../../assets/icons/Ministère_de_la_Santé_et_de_la_Prévention.png";
+import { useAuth } from "../../hooks/useAuth";
 
 const Header: React.FC = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch {
+      toast.error('Erreur lors de la déconnexion');
+    }
+  };
+
   return (
     <header className="bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
@@ -53,7 +68,10 @@ const Header: React.FC = () => {
           <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
             <div className="relative ml-4 shrink-0">
               <div className="flex items-center space-x-4">
-                <button className="block px-4 py-2 text-sm text-red-600 font-bold uppercase tracking-wider border border-red-100 hover:bg-red-50 rounded-md transition-colors">
+                <button
+                  onClick={handleLogout}
+                  className="block px-4 py-2 text-sm text-red-600 font-bold uppercase tracking-wider border border-red-100 hover:bg-red-50 rounded-md transition-colors"
+                >
                   Déconnexion
                 </button>
               </div>
